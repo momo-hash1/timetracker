@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+  background-color: #000;
+  color: #fff;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+.timeline-section {
+  width: 60%;
+  margin-right: 40px;
+  box-sizing: border-box;
+}
+
+.main-section {
+  border: 1px solid #f7f7f7;
+  height: 100%;
+  padding: 10px;
+}
+
+.functional-section {
+  width: 40%;
+  box-sizing: border-box;
+}
+
+.section-divider {
+  display: flex;
+  box-sizing: border-box;
+  padding: 25px;
+  height: 100vh;
+}
+.section-header {
+  color: #4a4543;
+  font-size: 18px;
+  margin-left: 15px;
+}
+.days-notes {
+  margin-top: 20px;
+  width: 100%;
+}
+.day-note {
+  background-color: #3a3432;
+  margin-top: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.day-note-cell {
+  width: calc(100% / 4);
+  display: flex;
+  justify-content: center;
+}
+
+.day-note-header {
+  background-color: #4a4543;
+  color: #b5e4f4;
+}
+.difficulty-marker-unmarked {
+  border: 1px solid #01a252;
+  width: 20px;
+  margin-right: 4px;
+  height: 20px;
+}
+
+.difficulty-points {
+  display: flex;
+}
+
+.content-section {
+  margin-top: 20px;
+}
+
+.achievement-input {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.achievement-input > * {
+  width: calc(100% / 2);
+}
+
+.achievement-input > h1 {
+  color: #a16a94;
+}
+
+.time-adder {
+  display: flex;
+  align-items: baseline;
+}
+
+.time-adder > input {
+  width: 25%;
+  border-radius: 0;
+  border: 0;
+  padding: 5px;
+  font-size: 18px;
+  background-color: #3a3432;
+  margin-right: 10px;
+  color: #f7f7f7;
+  box-sizing: content-box;
+  font-family: "Roboto Mono", monospace;
+}
+
+input:focus {
+  outline: none;
+}
+
+.work-done-selector {
+  display: flex;
+}
+
+.work-done-selector > button {
+  padding: 10px;
+  border-radius: 0;
+  border: 0;
+  font-family: "Roboto Mono", monospace;
+  width: calc(100% / 3);
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #01a252;
+  color: #f7f7f7;
+}
+
+.btn-pending {
+  background-color: #fded02;
+}
+
+.btn-failure {
+  background-color: #db2d20;
+}
+
+.btn-success:hover {
+  background-color: #2f7e25;
+}
+
+.btn-pending:hover {
+  color: #f7f7f7;
+
+  background-color: #717f24;
+}
+
+.btn-failure:hover {
+  color: #f7f7f7;
+
+  background-color: #7f2b27;
+}
