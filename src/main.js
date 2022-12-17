@@ -11,7 +11,7 @@ function createWindow() {
     },
   });
   handleIpc()
-  win.loadFile("index.html");
+  win.loadFile("./build/index.html");
 }
 
 app.whenReady().then(() => {
