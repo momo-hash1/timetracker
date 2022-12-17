@@ -152,3 +152,7 @@ input:focus {
 
   background-color: #7f2b27;
 }
+
+.difficulty-active {
+  background-color: #01a252;
+}

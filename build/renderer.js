@@ -1,1 +1,0 @@
-(async()=>{const e=await achievement.getList();console.log(e),await achievement.change({date:new Date("2022-12-18"),minutes:50,difficulty:3,workDone:"progress"})})();
