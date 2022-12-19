@@ -126,7 +126,6 @@ input:focus {
 
 .btn-success {
   background-color: #01a252;
-  color: #f7f7f7;
 }
 
 .btn-pending {
@@ -142,17 +141,27 @@ input:focus {
 }
 
 .btn-pending:hover {
-  color: #f7f7f7;
 
   background-color: #717f24;
 }
 
 .btn-failure:hover {
-  color: #f7f7f7;
 
   background-color: #7f2b27;
 }
 
 .difficulty-active {
   background-color: #01a252;
+}
+
+.hide{
+  display: none;
+}
+
+#minutes-title{
+  margin-right: 10px;
+}
+
+.progress-btn-active{
+  color: #f7f7f7;
 }
