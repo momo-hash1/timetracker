@@ -141,12 +141,10 @@ input:focus {
 }
 
 .btn-pending:hover {
-
   background-color: #717f24;
 }
 
 .btn-failure:hover {
-
   background-color: #7f2b27;
 }
 
@@ -154,14 +152,71 @@ input:focus {
   background-color: #01a252;
 }
 
-.hide{
+.hide {
   display: none;
 }
 
-#minutes-title{
+#minutes-title {
   margin-right: 10px;
 }
 
-.progress-btn-active{
+.progress-btn-active {
   color: #f7f7f7;
+}
+
+.day-note-task {
+  margin-top: 10px;
+}
+
+.day-note-task > h1 {
+  color: #fded02;
+  font-size: 14px;
+}
+
+.day-note-task > main {
+  display: flex;
+  margin-top: 10px;
+}
+
+.decoration-line {
+  display: flex;
+  width: 5%;
+  justify-content: center;
+}
+
+.decoration-line > div > .main-line {
+  background-color: #fded02;
+  min-height: 100%;
+  width: 1px;
+  display: block;
+}
+
+.decoration-line > div {
+  position: relative;
+}
+
+.decoration-line > div > * {
+  position: absolute;
+}
+.decoration-borders > * {
+  display: block;
+  background-color: #fded02;
+  width: 10px;
+  height: 1px;
+}
+
+.decoration-borders {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+}
+
+.day-notes-task{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.note-in-task{
+  margin-top: 0;
 }
