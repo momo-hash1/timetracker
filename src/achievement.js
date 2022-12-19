@@ -9,7 +9,9 @@ const sequelize = new Sequelize({
 });
 
 const Achievement = sequelize.define("Achievement", {
-  date: { type: DataTypes.DATEONLY },
+  year: {type: DataTypes.INTEGER},
+  month: {type: DataTypes.INTEGER},
+  day: {type: DataTypes.INTEGER},
   minutes: { type: DataTypes.INTEGER },
   difficulty: { type: DataTypes.INTEGER },
   workDone: { type: DataTypes.STRING },

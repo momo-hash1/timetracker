@@ -76,19 +76,18 @@
                     <p>Work done:</p>
                   </div>
                 </div>
-
               </div>
             </main>
           </div>
         </div>
       </main>
       <aside class="functional-section main-section">
-        <h1 class="section-header" id="currentDateLabel"></h1>
+        <h1 class="section-header" id="currentDateLabel">Today:</h1>
         <div class="content-section">
           <div class="achievement-input">
             <h1>Today time:</h1>
             <div class="time-adder">
-              <input type="text" />
+              <input type="text" class="input" />
               <h1 id="minutes-title" class="hide"></h1>
               <h1>minutes</h1>
             </div>
@@ -112,8 +111,57 @@
               <button class="btn-failure">failure</button>
             </div>
           </div>
+          <div class="achievement-input">
+            <h1>Task:</h1>
+            <div class="select-task">
+              <button>Add task</button>
+              <h1>or</h1>
+              <div>
+                <p>set previous:</p>
+                <h1>Example task....</h1>
+              </div>
+            </div>
+          </div>
+          <h1 class="section-header" id="currentDateLabel">Jump to year:</h1>
+          <div class="year-selector">
+            <h1>year: 2022</h1>
+            <div class="year-selector-widget">
+              <div class="year-button"><button>Prev</button></div>
+              <div class="year-left">
+                <p>2023</p>
+                <p>2023</p>
+              </div>
+              <div class="year-button">
+                <p class="year-selected">2022</p>
+              </div>
+              <div class="year-right">
+                <p>2023</p>
+                <p>2023</p>
+                <p>2023</p>
+                <p>2023</p>
+              </div>
+              <div class="year-button"><button>Next</button></div>
+            </div>
+          </div>
         </div>
       </aside>
+    </div>
+    <div class="modal" style="display: none">
+      <div class="modal-content">
+        <div>
+          <h1>Choose task</h1>
+          <input type="text" />
+          <div class="tasks-list">
+            <ul>
+              <li>Example task #1</li>
+              <li>Example task #2</li>
+              <li>Example task #3</li>
+              <li>Example task #4</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-background"></div>
     </div>
   </body>
   <script src="../src/renderer.js"></script>
