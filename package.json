@@ -4,20 +4,9 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "start-webpack": "npx webpack --config webpack.config.js && npx electron .",
-    "start": "npx electron ."
+    "start": "npx parcel index.html"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dayjs": "^1.11.7",
-    "electron": "^22.0.0",
-    "sequelize": "^6.27.0",
-    "sqlite3": "^5.1.4"
-  },
-  "devDependencies": {
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
-  }
+  "license": "ISC"
 }
