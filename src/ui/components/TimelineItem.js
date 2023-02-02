@@ -1,0 +1,25 @@
+const TimelineItem = (props) => {
+  return (
+      <div className="day-note">
+        <div className="day-note-cell">
+          <p>1</p>
+        </div>
+        <div className="day-note-cell">
+          <input type="text" className="input" />
+        </div>
+        <div className="day-note-cell">
+          <div className="difficulty-points">
+            <div className="difficulty-marker-unmarked"></div>
+            <div className="difficulty-marker-unmarked"></div>
+            <div className="difficulty-marker-unmarked"></div>
+            <div className="difficulty-marker-unmarked"></div>
+          </div>
+        </div>
+        <div className="day-note-cell">
+          <p>Example task numb...</p>
+        </div>
+      </div>
+  );
+};
+
+export default TimelineItem;

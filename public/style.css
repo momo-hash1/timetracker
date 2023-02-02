@@ -10,10 +10,6 @@ p {
   margin: 0;
 }
 
-button {
-  border-radius: 0;
-  border: 0;
-}
 
 .timeline-section {
   width: 75%;
@@ -212,6 +208,8 @@ input:focus {
 }
 
 button {
+  border-radius: 0;
+  border: 0;
   padding: 5px;
   background-color: #434360;
   cursor: pointer;
@@ -220,7 +218,7 @@ button {
   margin: 5px;
 }
 
-.month-selected {
+.button-selected {
   background-color: #46acc2;
   color: #343234;
 }
