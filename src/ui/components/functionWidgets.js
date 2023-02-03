@@ -1,12 +1,19 @@
-import List from "./List";
-import TitledContainer from "./TitledContainer";
+import List from "./widgets/List";
+import TitledContainer from "./containers/TitledContainer";
+import React from "react";
+import { yearContext } from "./context";
 
 const FunctionWidgets = (props) => {
+  const { year, setYear } = React.useContext(yearContext);
   return (
     <TitledContainer title={"Jump to year"}>
       <List
-        array={[{ text: 23 }, { text: 23 }, { text: 23 }]}
-        header={<h1>year: 2022</h1>}
+        array={[
+          { text: 2021, set: (x) => setYear(x) },
+          { text: 2022, set: (x) => setYear(x) },
+          { text: 2023, set: (x) => setYear(x) },
+        ]}
+        highlightValue={year}
       />
     </TitledContainer>
   );

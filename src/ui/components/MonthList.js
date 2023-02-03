@@ -1,37 +1,25 @@
-import PropsTypes from "prop-types";
-import Button from "./Button";
+import Button from "./widgets/Button";
+import React from "react";
+import { monthContext } from "./context";
+import { getMonths } from "../../utils";
 
-const MonthList = (props) => {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+const MonthList = () => {
+  const { month, setMonth } = React.useContext(monthContext);
+
   return (
     <div className="month-selector">
-      {months.map((x) => (
-        <Button
-          title={x}
-          selected={x === props.selectedMonth}
-          onClick={() => props.selectMonth(x)}
-        />
+      {getMonths().map((x, index) => (
+        <div
+          onClick={() => {
+            setMonth(index);
+            console.log(month);
+          }}
+        >
+          <Button title={x} selected={index === month} />
+        </div>
       ))}
     </div>
   );
-};
-
-MonthList.propsTypes = {
-  selectMonth: PropsTypes.func,
-  selectedMonth: PropsTypes.string,
 };
 
 export default MonthList;

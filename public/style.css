@@ -156,7 +156,7 @@ input:focus {
   background-color: #434360;
   padding: 5px;
 }
-.list > ul > li {
+.list-item {
   background-color: #323248;
   padding: 8px;
   margin-top: 4px;
@@ -218,7 +218,16 @@ button {
   margin: 5px;
 }
 
-.button-selected {
+.highlighted {
   background-color: #46acc2;
   color: #343234;
+}
+
+
+.linebreak{
+  background-color: #cc8b00;
+  height: 1px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

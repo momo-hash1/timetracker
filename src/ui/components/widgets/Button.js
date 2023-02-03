@@ -1,9 +1,9 @@
-import PropTypes from "prop-types"; // ES6
+import PropTypes from "prop-types"; 
 import React from "react";
 
 const Button = (props) => {
   return (
-    <button className={props.selected ? "button-selected" : ""}>
+    <button className={props.selected ? "highlighted" : ""}>
       {props.title}
     </button>
   );
