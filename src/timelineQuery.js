@@ -13,12 +13,30 @@ const dbInit = () => {
   return db;
 };
 
+const sqlFunWrapper = (cb) => {
+  const db = dbInit();
+  cb(db);
+
+  db.close();
+};
+
 const formatMonthYear = (month, year) => `${month}/${year}`;
 
-const getDaysByMonthYear = (db, year, month) => {
-  const sql = `SELECT * FROM timeline WHERE month_year=?`;
-  db.all(sql, [formatMonthYear(month, year)], (err, rows) => {
-    console.log(rows);
+const getDaysByMonthYear = (year, month) => {
+  const sql = `SELECT * FROM timeline WHERE month_year="${formatMonthYear(
+    month,
+    year
+  )}"`;
+  return all(sql);
+};
+
+const all = (sql) => {
+  return new Promise((resolve) => {
+    sqlFunWrapper((db) =>
+      db.all(sql, [], (err, rows) => {
+        resolve(rows);
+      })
+    );
   });
 };
 

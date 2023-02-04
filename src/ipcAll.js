@@ -1,9 +1,9 @@
 import { ipcMain } from "electron";
 import { getDaysByMonthYear } from "./timelineQuery";
 
-const ipcHandle = (db) => {
-  ipcMain.handle("timeline:getDays", (event, ...data) => {
-    getDaysByMonthYear(db, 2022, 2);
+const ipcHandle = (db, window) => {
+  ipcMain.handle("timeline:getDays", async (event, ...data) => {
+    return await getDaysByMonthYear(db, data[1], data[0]);
   });
   ipcMain.handle("timeline:changeDay", (event, ...data) => {});
 };

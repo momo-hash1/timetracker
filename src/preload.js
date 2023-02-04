@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld("timeline", {
-  days: () => ipcRenderer.invoke("timeline:getDays"),
+  days: (month, year) => ipcRenderer.invoke("timeline:getDays", month, year),
   change: () => console.log("change"),
 });

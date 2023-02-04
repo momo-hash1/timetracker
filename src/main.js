@@ -13,8 +13,8 @@ function createWindow() {
   });
 
   const db = dbInit()
-
-  ipcHandle(db)
+  
+  ipcHandle(db, win)
   win.loadFile("../dist/index.html");
 }
 
