@@ -12,7 +12,6 @@ const MonthList = () => {
         <div
           onClick={() => {
             setMonth(index);
-            console.log(month);
           }}
         >
           <Button title={x} selected={index === month} />

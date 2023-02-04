@@ -7,7 +7,6 @@ const dbInit = () => {
     sqlite3.OPEN_READWRITE,
     (err) => {
       err && console.log(err.message);
-      console.log("Connected");
     }
   );
   return db;
@@ -16,7 +15,6 @@ const dbInit = () => {
 const sqlFunWrapper = (cb) => {
   const db = dbInit();
   cb(db);
-
   db.close();
 };
 

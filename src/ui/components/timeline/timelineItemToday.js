@@ -5,7 +5,7 @@ const TimelineItemToday = () => {
   return (
     <React.Fragment>
       <h1 className="section-header">Today: </h1>
-      <TimelineItem />
+      <TimelineItem TimeItem={{}}/>
     </React.Fragment>
   );
 };
