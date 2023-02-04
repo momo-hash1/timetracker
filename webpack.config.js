@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = [
   {
@@ -16,6 +17,12 @@ module.exports = [
     output: {
       path: __dirname + "/dist",
       filename: "electron.js",
+    },
+    externals: {
+      sqlite3: "commonjs sqlite3",
+    },
+    node: {
+      __dirname: false,
     },
   },
   {
@@ -45,5 +52,13 @@ module.exports = [
         template: "./public/index.html",
       }),
     ],
+  },
+  {
+    entry: "./src/preload.js",
+    target: "electron-preload",
+    output: {
+      path: path.join(__dirname, "dist"),
+      filename: "preload.js",
+    },
   },
 ];
