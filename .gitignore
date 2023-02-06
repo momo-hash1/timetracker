@@ -2,3 +2,4 @@ node_modules
 *.db
 .currentday
 dist
+package-lock.json
