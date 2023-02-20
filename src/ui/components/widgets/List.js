@@ -7,7 +7,13 @@ const List = (props) => {
       {props.header}
       <ul>
         {props.array.map((x) => (
-          <ListItem item={x} highlightValue={props.highlightValue}/>
+          <ListItem
+            item={x}
+            highlightValue={props.highlightValue}
+            onClick={() => {
+              props.onClick(props.pickProperty(x));
+            }}
+          />
         ))}
       </ul>
     </div>
@@ -17,7 +23,7 @@ const List = (props) => {
 List.propsTypes = {
   array: PropsTypes.array,
   header: PropsTypes.object,
-  highlightValue: PropsTypes.string
+  highlightValue: PropsTypes.string,
 };
 
 export default List;

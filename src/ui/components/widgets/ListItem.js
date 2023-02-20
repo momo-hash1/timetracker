@@ -3,7 +3,7 @@ import PropsTypes from "prop-types";
 const ListItem = (props) => {
   return (
     <li
-      onClick={() => props.item.set(props.item.text)}
+      onClick={() => props.onClick()}
       className={
         props.highlightValue === props.item.text
           ? "highlighted list-item"

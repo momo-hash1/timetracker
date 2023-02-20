@@ -1,7 +1,7 @@
 import React from "react";
 import TitledContainer from "../containers/TitledContainer";
-import Button from "../widgets/Button";
-import Input from "../widgets/Input";
+import Button from "./Button";
+import Input from "./Input";
 import { useForm } from "react-hook-form";
 
 const Auth = (props) => {
