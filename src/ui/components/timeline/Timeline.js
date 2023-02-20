@@ -8,14 +8,12 @@ import Linebreak from "../widgets/Linebreak";
 import { getMonthName } from "../../../utils";
 
 const Timeline = () => {
-  const { year } = React.useContext(yearContext);
-  const { month } = React.useContext(monthContext);
   return (
     <React.Fragment>
       <MonthList />
       <TitledContainer
         title={"Timeline"}
-        highlightTitle={`${year} ${getMonthName(month)}`}
+        highlightTitle={``}
       >
         <TimelineItemToday />
         <Linebreak />

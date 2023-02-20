@@ -3,13 +3,10 @@ import PropTypes from "prop-types";
 const Input = (props) => {
   return (
     <div>
-      {props.title !== undefined && <p>{props.title}</p>}
-      <input
-        type="text"
-        className="input"
-        onChange={(e) => props.onChange(e.target.value)}
-        value={props.value}
-      />
+      {props.title !== undefined && (
+        <p className="input-title">{props.title}</p>
+      )}
+      <input type="text" className="input" {...props.register} />
     </div>
   );
 };

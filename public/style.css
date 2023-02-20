@@ -10,7 +10,6 @@ p {
   margin: 0;
 }
 
-
 .timeline-section {
   width: 75%;
   margin-right: 40px;
@@ -111,10 +110,11 @@ p {
   padding: 5px;
   font-size: 18px;
   background-color: #323248;
-  margin-right: 10px;
   color: #cc8b00;
   box-sizing: content-box;
   font-family: "Roboto Mono", monospace;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input:focus {
@@ -223,11 +223,31 @@ button {
   color: #343234;
 }
 
-
-.linebreak{
+.linebreak {
   background-color: #cc8b00;
   height: 1px;
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.titled-container {
+  margin-top: 20px;
+}
+.input-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: baseline;
+}
+
+.large-button {
+  padding: 10px;
+  font-size: 15px;
 }

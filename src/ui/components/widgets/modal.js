@@ -7,9 +7,10 @@ const Modal = (props) => {
       <div className="modal-content">
         <div>
           <div className="modal-header">
-            <h1>Choose task</h1>
+            <h1>{props.headerTitle}</h1>
           </div>
           <div className="tasks-list">
+            {props.body}
             <List array={[2012, 12012, 1203, 434]} header={<Input />} />
           </div>
         </div>
