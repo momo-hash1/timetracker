@@ -11,6 +11,8 @@ const FunctionWidgets = (props) => {
           { text: 2022},
           { text: 2023 },
         ]}
+        selectTitle={2021}
+        pickTitle={(x) => x.text}
       />
     </TitledContainer>
   );

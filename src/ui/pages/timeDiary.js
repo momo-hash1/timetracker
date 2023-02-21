@@ -1,6 +1,6 @@
 import SectionDivider from "../components/containers/SectionDivider";
 import Timeline from "../components/timeline/Timeline";
-import FunctionWidgets from "../components/functionWidgets";
+import FunctionWidgets from "../components/yearList";
 import React from "react";
 import Navigation from "../components/widgets/navigation";
 

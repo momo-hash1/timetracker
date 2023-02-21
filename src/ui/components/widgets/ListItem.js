@@ -5,12 +5,12 @@ const ListItem = (props) => {
     <li
       onClick={() => props.onClick()}
       className={
-        props.highlightValue === props.item.text
+        props.selectTitle === props.title
           ? "highlighted list-item"
           : "list-item"
       }
     >
-      {props.item.text}
+      {props.title}
     </li>
   );
 };

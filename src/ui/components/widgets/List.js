@@ -8,8 +8,8 @@ const List = (props) => {
       <ul>
         {props.array.map((x) => (
           <ListItem
-            item={x}
-            highlightValue={props.highlightValue}
+            title={props.pickTitle(x)}
+            selectTitle={props.selectTitle}
             onClick={() => {
               props.onClick(props.pickProperty(x));
             }}
