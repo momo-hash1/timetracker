@@ -2,6 +2,7 @@ import SectionDivider from "../components/containers/SectionDivider";
 import Timeline from "../components/timeline/Timeline";
 import FunctionWidgets from "../components/functionWidgets";
 import React from "react";
+import Navigation from "../components/widgets/navigation";
 
 const TimeDiary = () => {
   const [year, setYear] = React.useState(new Date().getFullYear());
@@ -10,9 +11,8 @@ const TimeDiary = () => {
   return (
     <SectionDivider
       main={<Timeline year={year} month />}
-      aside={
-      <FunctionWidgets />
-    }
+      nav={<Navigation doClick={() => {}} title={"return to timediaries"}/>}
+      aside={<FunctionWidgets />}
     />
   );
 };

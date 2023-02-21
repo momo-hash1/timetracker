@@ -4,11 +4,6 @@ import React from "react";
 
 const MessageBox = (props) => {
   const [messages, setMessages] = React.useState([
-    { text: "Required password" },
-    { text: "Required email" },
-    { text: "Passwords is not same" },
-    { text: "Passwords is not same" },
-    { text: "Passwords is not same" },
   ]);
 
   const clearMessage = (message) => {

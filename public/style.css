@@ -19,7 +19,12 @@ p {
 .main-section {
   border: 1px solid #f7f7f7;
   height: 100%;
-  padding: 10px;
+}
+
+.main-section > div{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 .functional-section {
@@ -250,4 +255,11 @@ button {
 .large-button {
   padding: 10px;
   font-size: 15px;
+}
+
+.navigation{
+  background-color: #46acc2;
+  padding: 2px;
+  color: #434360;
+  cursor: pointer;
 }

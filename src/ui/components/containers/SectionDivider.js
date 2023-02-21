@@ -4,7 +4,10 @@ import EssentialAside from "./essentialAside";
 const SectionDivider = (props) => {
   return (
     <div className="section-divider">
-      <main className="timeline-section main-section">{props.main}</main>
+      <main className="timeline-section main-section">
+        { props.nav}
+        <div>{props.main}</div>
+      </main>
       <aside className="functional-section main-section">
         <div
           style={{

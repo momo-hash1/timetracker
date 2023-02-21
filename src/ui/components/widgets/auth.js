@@ -15,13 +15,13 @@ const Auth = (props) => {
 
   React.useEffect(() => {
     if (formState.errors.email) {
-      alert("email required");
+      console.log("email required");
     }
     if (formState.errors.password) {
-      alert("password required");
+      console.log("password required");
     }
     if (formState.errors.passwordAgain) {
-      alert("password is not same");
+      console.log("password is not same");
     }
     }, [formState]);
 
