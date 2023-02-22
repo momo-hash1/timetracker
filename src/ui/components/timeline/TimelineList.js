@@ -21,7 +21,7 @@ const TimelineList = (props) => {
       </div>
 
       <div className="days-notes">
-        <TimelineItem TimeItem={{}} />
+        <TimelineItem TimeItem={{day:1, minutes: 40, difficulty: 2, task: 4}} />
       </div>
     </div>
   );

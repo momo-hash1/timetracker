@@ -1,3 +1,5 @@
+import TimeAdder from "../widgets/timeAdder";
+
 const TimelineItem = (props) => {
   return (
     <div className="day-note">
@@ -5,7 +7,9 @@ const TimelineItem = (props) => {
         <p>{props.TimeItem.day}</p>
       </div>
       <div className="day-note-cell">
-        <p>{props.TimeItem.minutes}</p>
+        <p>
+          <TimeAdder time={props.TimeItem.minutes} setTime={() => {}} />
+        </p>
       </div>
       <div className="day-note-cell">
         <div className="difficulty-points">
@@ -16,7 +20,7 @@ const TimelineItem = (props) => {
         </div>
       </div>
       <div className="day-note-cell">
-        <p>{props.TimeItem.day}</p>
+        <p>{props.TimeItem.task}</p>
       </div>
     </div>
   );

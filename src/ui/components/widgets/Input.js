@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const Input = (props) => {
   return (
-    <div>
+    <div className="input-wrapper">
       {props.title !== undefined && (
         <p className="input-title">{props.title}</p>
       )}

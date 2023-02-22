@@ -10,8 +10,8 @@ const TimeDiary = () => {
 
   return (
     <SectionDivider
-      main={<Timeline year={year} month />}
-      nav={<Navigation doClick={() => {}} title={"return to timediaries"}/>}
+      main={<Timeline year={year} month={month} />}
+      nav={<Navigation to={"/timediary"} title={"return to timediaries"} />}
       aside={<FunctionWidgets />}
     />
   );

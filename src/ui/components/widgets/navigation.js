@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 const Navigation = (props) => {
+  const navigate = useNavigate();
   return (
-    <nav className="navigation" onClick={() => props.doClick()}>
+    <nav className="navigation" onClick={() => navigate(props.to)}>
       {`<- ${props.title}`}
     </nav>
   );
