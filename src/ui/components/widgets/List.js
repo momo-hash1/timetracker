@@ -9,7 +9,10 @@ const List = (props) => {
         {props.array.map((x) => (
           <ListItem
             title={props.pickTitle(x)}
-            selectTitle={props.selectTitle}
+            optionalAppear={[
+              props.optionalAppear(x),
+              props.selectTitle === props.pickTitle(x) ? "highlighted" : "",
+            ]}
             onClick={() => {
               props.onClick(props.pickProperty(x));
             }}

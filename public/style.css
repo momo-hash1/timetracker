@@ -266,3 +266,8 @@ button {
   color: #434360;
   cursor: pointer;
 }
+
+.error-msg {
+  background-color: #f2513f;
+  color: #ebeaeb;
+}

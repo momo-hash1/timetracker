@@ -1,7 +1,7 @@
 import { redirect } from "react-router-dom";
 
 const _isAuth = () => {
-  return true;
+  return sessionStorage.getItem("userToken") !== null;
 };
 
 const useAuth = () => {
@@ -17,4 +17,9 @@ const indexRedirect = () => {
   return _isAuth() && redirect("/timediary");
 };
 
-export { useAuth, userAccess, indexRedirect };
+const getUser = () => {
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  return user;
+};
+
+export { useAuth, userAccess, indexRedirect, getUser };

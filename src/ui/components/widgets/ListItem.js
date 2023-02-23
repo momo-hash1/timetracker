@@ -1,14 +1,11 @@
 import PropsTypes from "prop-types";
 
 const ListItem = (props) => {
+  console.log(props.optionalAppear);
   return (
     <li
       onClick={() => props.onClick()}
-      className={
-        props.selectTitle === props.title
-          ? "highlighted list-item"
-          : "list-item"
-      }
+      className={`${props.optionalAppear.join(" ")} list-item`}
     >
       {props.title}
     </li>

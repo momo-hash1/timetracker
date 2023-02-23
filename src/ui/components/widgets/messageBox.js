@@ -1,9 +1,13 @@
 import TitledContainer from "../containers/TitledContainer";
 import List from "./List";
 import React from "react";
+import { getErrorMessage, getInfoMessage } from "../../../logic/messages";
+import { ERROR_MSG } from "../../../utils";
 
-const MessageBox = (props) => {
+const MessageBox = () => {
   const [messages, setMessages] = React.useState([
+    getErrorMessage("test error"),
+    getInfoMessage("test info"),
   ]);
 
   const clearMessage = (message) => {
@@ -11,7 +15,6 @@ const MessageBox = (props) => {
   };
 
   React.useEffect(() => {
-    
     const timeOut = setTimeout(
       () =>
         setMessages(
@@ -28,10 +31,12 @@ const MessageBox = (props) => {
         <TitledContainer title={"messages"}>
           <List
             array={messages}
+            pickTitle={(x) => x.title}
             onClick={(message) => {
               clearMessage(message);
             }}
             pickProperty={(x) => x}
+            optionalAppear={(x) => x.type === ERROR_MSG && "error-msg"}
           />
         </TitledContainer>
       )}

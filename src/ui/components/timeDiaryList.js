@@ -9,7 +9,7 @@ const TimeDiaryList = (props) => {
       <List
         array={["prog", "math", "i dont know"]}
         pickTitle={(x) => x}
-        
+          
         onClick={(x) => navigate(`/timediary/${x}`)}
         pickProperty={(x) => x.timediaryId}
       ></List>

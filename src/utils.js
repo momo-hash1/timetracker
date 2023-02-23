@@ -24,4 +24,7 @@ const getMonthName = (monthIndex) => {
   return months[monthIndex];
 };
 
-export { getMonthName, getMonths };
+const INFO_MSG = "info";
+const ERROR_MSG = "error";
+
+export { getMonthName, getMonths, INFO_MSG, ERROR_MSG };
