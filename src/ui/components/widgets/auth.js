@@ -6,16 +6,19 @@ import { useForm } from "react-hook-form";
 import { getErrorMessage } from "../../../logic/messages";
 import { addMessage } from "../../../logic/redux/messageSlice";
 import { useDispatch } from "react-redux";
+import { useAuth, isAuth } from "../../../logic/auth";
+import YouLogged from "../youLogged";
 
 const _Auth = () => {
-  const { register, trigger, formState } = useForm();
+  const { register, trigger, formState, getValues } = useForm();
 
   const [isSignUp, setSignUp] = React.useState(false);
   const getAuthBtnLabel = (x) => (x ? "Sign up" : " Sign in");
 
   const dispatch = useDispatch();
 
-  const onSignIn = () => alert("sign in");
+  const { signIn, isPending } = useAuth();
+
   const onRegister = () => alert("sign up");
 
   React.useEffect(() => {
@@ -31,58 +34,62 @@ const _Auth = () => {
   }, [formState]);
 
   return (
-    <TitledContainer title={getAuthBtnLabel(isSignUp)}>
-      <React.Fragment>
-        <Input
-          title={"email"}
-          register={register("email", {
-            required: true,
-          })}
-        />
-        <Input
-          title={"password"}
-          register={register("password", {
-            required: true,
-          })}
-        />
-        {isSignUp && (
-          <Input
-            title={"password again"}
-            register={register("passwordAgain", {
-              validate: (v, formValues) => v === formValues.password,
-            })}
-          />
-        )}
-      </React.Fragment>
-
-      <div className="auth-buttons">
-        <Button
-          selected={true}
-          large={true}
-          onClick={async () => {
-            const valid = await trigger();
-            if (!valid) return;
-
-            if (isSignUp) {
-              onRegister();
-              return;
-            }
-            onSignIn();
-            //do sign in
-          }}
-        >
-          {getAuthBtnLabel(isSignUp)}
-        </Button>
-
-        <Button
-          onClick={async () => {
-            setSignUp(isSignUp ? false : true);
-          }}
-        >
-          To {getAuthBtnLabel(!isSignUp)}
-        </Button>
-      </div>
-    </TitledContainer>
+    <React.Fragment>
+      {isAuth() ? (
+        <YouLogged />
+      ) : (
+        <TitledContainer title={getAuthBtnLabel(isSignUp)}>
+          <React.Fragment>
+            <Input
+              title={"email"}
+              register={register("email", {
+                required: true,
+              })}
+            />
+            <Input
+              title={"password"}
+              register={register("password", {
+                required: true,
+              })}
+            />
+            {isSignUp && (
+              <Input
+                title={"password again"}
+                register={register("passwordAgain", {
+                  validate: (v, formValues) => v === formValues.password,
+                })}
+              />
+            )}
+          </React.Fragment>
+          <div className="auth-buttons">
+            <Button
+              selected={true}
+              large={true}
+              isPending={isPending}
+              onClick={async () => {
+                const valid = await trigger();
+                if (!valid) return;
+                if (isSignUp) {
+                  onRegister();
+                  return;
+                }
+                signIn(getValues());
+                //do sign in
+              }}
+            >
+              {getAuthBtnLabel(isSignUp)}
+            </Button>
+            <Button
+              onClick={async () => {
+                setSignUp(isSignUp ? false : true);
+              }}
+            >
+              To {getAuthBtnLabel(!isSignUp)}
+            </Button>
+          </div>
+        </TitledContainer>
+      )}
+    </React.Fragment>
   );
 };
 const Auth = React.memo(_Auth);

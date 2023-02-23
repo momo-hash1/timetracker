@@ -1,9 +1,8 @@
 import React from "react";
 import SectionDivider from "../components/containers/SectionDivider";
-import { useAuth } from "../../logic/auth";
+import { isAuth } from "../../logic/auth";
 
 const Index = () => {
-  const { isAuth } = useAuth();
   return (
     <SectionDivider
       main={
