@@ -1,6 +1,5 @@
 import React from "react";
 import TimelineItem from "./TimelineItem";
-import { yearContext, monthContext } from "../context";
 
 const TimelineList = (props) => {
   return (

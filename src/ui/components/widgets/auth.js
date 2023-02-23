@@ -3,25 +3,30 @@ import TitledContainer from "../containers/TitledContainer";
 import Button from "./Button";
 import Input from "./Input";
 import { useForm } from "react-hook-form";
+import { getErrorMessage } from "../../../logic/messages";
+import { addMessage } from "../../../logic/redux/messageSlice";
+import { useDispatch } from "react-redux";
 
-const Auth = () => {
+const _Auth = () => {
   const { register, trigger, formState } = useForm();
 
   const [isSignUp, setSignUp] = React.useState(false);
   const getAuthBtnLabel = (x) => (x ? "Sign up" : " Sign in");
+
+  const dispatch = useDispatch();
 
   const onSignIn = () => alert("sign in");
   const onRegister = () => alert("sign up");
 
   React.useEffect(() => {
     if (formState.errors.email) {
-      console.log("email required");
+      dispatch(addMessage(getErrorMessage("email required")));
     }
     if (formState.errors.password) {
-      console.log("password required");
+      dispatch(addMessage(getErrorMessage("password required")));
     }
     if (formState.errors.passwordAgain) {
-      console.log("password is not same");
+      dispatch(addMessage(getErrorMessage("password is not same")));
     }
   }, [formState]);
 
@@ -68,7 +73,7 @@ const Auth = () => {
         >
           {getAuthBtnLabel(isSignUp)}
         </Button>
-        
+
         <Button
           onClick={async () => {
             setSignUp(isSignUp ? false : true);
@@ -80,5 +85,5 @@ const Auth = () => {
     </TitledContainer>
   );
 };
-
+const Auth = React.memo(_Auth);
 export default Auth;

@@ -2,15 +2,17 @@ import TitledContainer from "../containers/TitledContainer";
 import List from "./List";
 import React from "react";
 import { ERROR_MSG } from "../../../utils";
-import {
-  useMessage,
-} from "../../../logic/messages";
+import { useSelector, useDispatch } from "react-redux";
+import { clearMessage } from "../../../logic/redux/messageSlice";
 
 const MessageBox = () => {
-  const { clearByIndex, clearMessage, messages } = useMessage();
-
+  const dispatch = useDispatch();
+  const messages = useSelector((state) => state.alert.messages);
   React.useEffect(() => {
-    const timeOut = setTimeout(() => clearByIndex(messages.length - 1), 1000);
+    const timeOut = setTimeout(
+      () => dispatch(clearMessage(messages.length - 1)),
+      2000
+    );
 
     return () => setTimeout(timeOut);
   }, [messages]);
@@ -23,7 +25,7 @@ const MessageBox = () => {
             array={messages}
             pickTitle={(x) => x.title}
             onClick={(message) => {
-              clearMessage(message);
+              dispatch(clearMessage(message));
             }}
             pickProperty={(x) => x}
             optionalAppear={(x) => x.type === ERROR_MSG && "error-msg"}
