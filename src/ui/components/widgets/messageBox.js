@@ -1,27 +1,16 @@
 import TitledContainer from "../containers/TitledContainer";
 import List from "./List";
 import React from "react";
-import { getErrorMessage, getInfoMessage } from "../../../logic/messages";
 import { ERROR_MSG } from "../../../utils";
+import { clearMessage, clearByIndex } from "../../../logic/messages";
+import { messageContext } from "../context";
 
 const MessageBox = () => {
-  const [messages, setMessages] = React.useState([
-    getErrorMessage("test error"),
-    getInfoMessage("test info"),
-  ]);
-
-  const clearMessage = (message) => {
-    setMessages(messages.filter((searchMsg) => searchMsg !== message));
-  };
+  const { messages } = React.useContext(messageContext);
 
   React.useEffect(() => {
-    const timeOut = setTimeout(
-      () =>
-        setMessages(
-          messages.filter((_, index) => index !== messages.length - 1)
-        ),
-      1000
-    );
+    const timeOut = setTimeout(() => clearByIndex(messages.length - 1), 1000);
+
     return () => setTimeout(timeOut);
   }, [messages]);
 
