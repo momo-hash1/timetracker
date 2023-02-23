@@ -2,11 +2,12 @@ import TitledContainer from "../containers/TitledContainer";
 import List from "./List";
 import React from "react";
 import { ERROR_MSG } from "../../../utils";
-import { clearMessage, clearByIndex } from "../../../logic/messages";
-import { messageContext } from "../context";
+import {
+  useMessage,
+} from "../../../logic/messages";
 
 const MessageBox = () => {
-  const { messages } = React.useContext(messageContext);
+  const { clearByIndex, clearMessage, messages } = useMessage();
 
   React.useEffect(() => {
     const timeOut = setTimeout(() => clearByIndex(messages.length - 1), 1000);

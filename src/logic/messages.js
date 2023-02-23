@@ -2,17 +2,24 @@ import { messageContext } from "../ui/components/context";
 import React from "react";
 import { ERROR_MSG, INFO_MSG } from "../utils";
 
-const clearByIndex = (byIndex) => {
+const useMessage = () => {
   const { messages, setMessages } = React.useContext(messageContext);
-  setMessages(messages.filter((_, index) => index !== byIndex));
-};
+  const clearByIndex = (byIndex) => {
+    messages.length > 0 &&
+      setMessages(messages.filter((_, index) => index !== byIndex));
+  };
 
-const addMessage = (message) => {
-  const { messages, setMessages } = React.useContext(messageContext);
-  if (messages.length > 4) {
-    clearByIndex(0);
-  }
-  setMessages([...messages, message]);
+  const addMessage = (message) => {
+    if (messages.length > 4) {
+      clearByIndex(0);
+    }
+    setMessages([...messages, message]);
+  };
+
+  const clearMessage = (message) => {
+    setMessages(messages.filter((searchMsg) => searchMsg.title !== message));
+  };
+  return { addMessage, clearByIndex, clearMessage, messages };
 };
 
 const getInfoMessage = (title) => {
@@ -23,16 +30,4 @@ const getErrorMessage = (title) => {
   return { type: ERROR_MSG, title: title };
 };
 
-const clearMessage = (message) => {
-  const { messages, setMessages } = React.useContext(messageContext);
-
-  setMessages(messages.filter((searchMsg) => searchMsg.title !== message));
-};
-
-export {
-  addMessage,
-  getInfoMessage,
-  getErrorMessage,
-  clearMessage,
-  clearByIndex,
-};
+export { getInfoMessage, getErrorMessage, useMessage };

@@ -4,7 +4,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { useForm } from "react-hook-form";
 
-const Auth = (props) => {
+const Auth = () => {
   const { register, trigger, formState } = useForm();
 
   const [isSignUp, setSignUp] = React.useState(false);
@@ -23,7 +23,7 @@ const Auth = (props) => {
     if (formState.errors.passwordAgain) {
       console.log("password is not same");
     }
-    }, [formState]);
+  }, [formState]);
 
   return (
     <TitledContainer title={getAuthBtnLabel(isSignUp)}>
@@ -51,7 +51,9 @@ const Auth = (props) => {
       </React.Fragment>
 
       <div className="auth-buttons">
-        <div
+        <Button
+          selected={true}
+          large={true}
           onClick={async () => {
             const valid = await trigger();
             if (!valid) return;
@@ -64,17 +66,16 @@ const Auth = (props) => {
             //do sign in
           }}
         >
-          <Button selected={true} large={true}>
-            {getAuthBtnLabel(isSignUp)}
-          </Button>
-        </div>
-        <div
-          onClick={() => {
+          {getAuthBtnLabel(isSignUp)}
+        </Button>
+        
+        <Button
+          onClick={async () => {
             setSignUp(isSignUp ? false : true);
           }}
         >
-          <Button>To {getAuthBtnLabel(!isSignUp)}</Button>
-        </div>
+          To {getAuthBtnLabel(!isSignUp)}
+        </Button>
       </div>
     </TitledContainer>
   );
