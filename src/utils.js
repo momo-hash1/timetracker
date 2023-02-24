@@ -27,5 +27,6 @@ const getMonthName = (monthIndex) => {
 const INFO_MSG = "info";
 const ERROR_MSG = "error";
 
+const API_URL = "http://127.0.0.1:3000"
 
-export { getMonthName, getMonths, INFO_MSG, ERROR_MSG };
+export { getMonthName, getMonths, INFO_MSG, ERROR_MSG, API_URL };

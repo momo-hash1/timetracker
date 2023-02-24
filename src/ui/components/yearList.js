@@ -1,20 +1,17 @@
 import List from "./widgets/List";
 import TitledContainer from "./containers/TitledContainer";
 import React from "react";
+import EntryLoader from "./containers/entryLoader";
 
 const FunctionWidgets = (props) => {
   return (
-    <TitledContainer title={"Jump to year"}>
-      <List
-        array={[
-          { text: 2021},
-          { text: 2022},
-          { text: 2023 },
-        ]}
-        selectTitle={2021}
-        pickTitle={(x) => x.text}
-      />
-    </TitledContainer>
+    <EntryLoader
+      child={(arr) => (
+        <TitledContainer title={"Jump to year"}>
+          <List array={arr} selectTitle={2021} pickTitle={(x) => x.title} />
+        </TitledContainer>
+      )}
+    />
   );
 };
 

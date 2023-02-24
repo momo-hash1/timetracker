@@ -1,7 +1,7 @@
 import PropsTypes from "prop-types";
 
 const ListItem = (props) => {
-  console.log(props.optionalAppear);
+
   return (
     <li
       onClick={() => props.onClick()}

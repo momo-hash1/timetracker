@@ -1,10 +1,24 @@
+import { useAuth } from "../../logic/auth";
 import Button from "./widgets/Button";
 
 const YouLogged = (props) => {
+  const { logOut } = useAuth();
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        marginTop: "10px",
+      }}
+    >
       <p>You logged</p>
-      <Button>Log out</Button>
+      <Button
+        onClick={() => {
+          logOut();
+        }}
+      >
+        Log out
+      </Button>
     </div>
   );
 };

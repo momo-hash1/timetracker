@@ -1,19 +1,28 @@
 import TitledContainer from "./containers/TitledContainer";
 import List from "./widgets/List";
 import { useNavigate } from "react-router-dom";
+import React from "react";
+import useEntities from "../../logic/getEntities";
+import Button from "./widgets/Button";
+import EntryLoader from "./containers/entryLoader";
 
-const TimeDiaryList = (props) => {
+const TimeDiaryList = () => {
   const navigate = useNavigate();
+
   return (
-    <TitledContainer title={"Timediaries"}>
-      <List
-        array={["prog", "math", "i dont know"]}
-        pickTitle={(x) => x}
-          
-        onClick={(x) => navigate(`/timediary/${x}`)}
-        pickProperty={(x) => x.timediaryId}
-      ></List>
-    </TitledContainer>
+    <EntryLoader
+      child={(arr) => (
+        <TitledContainer title={"Timediaries"}>
+          <List
+            array={arr}
+            pickTitle={(x) => x.title}
+            optionalAppear={() => {}}
+            onClick={(x) => navigate(`/timediary/${x.id}`)}
+            pickProperty={(x) => x}
+          ></List>
+        </TitledContainer>
+      )}
+    />
   );
 };
 export default TimeDiaryList;

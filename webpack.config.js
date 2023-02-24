@@ -6,6 +6,7 @@ module.exports = [
     mode: "development",
     entry: "./src/ui/index.js",
     devtool: "source-map",
+    devServer: { historyApiFallback: true },
     module: {
       rules: [
         {

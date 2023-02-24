@@ -19,6 +19,7 @@ p {
 .main-section {
   border: 1px solid #f7f7f7;
   height: 100%;
+  overflow: auto;
 }
 
 .main-section > div {

@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { addMessage } from "../logic/redux/messageSlice";
 import { getErrorMessage } from "../logic/messages";
 import React from "react";
+import { API_URL } from "../utils";
 
 const isAuth = () => {
   return sessionStorage.getItem("userToken") !== null;
@@ -11,10 +12,11 @@ const isAuth = () => {
 const useAuth = () => {
   const dispatch = useDispatch();
   const [isPending, setPending] = React.useState(false);
+  const navigate = useNavigate();
 
   const signIn = (userInfo) => {
     setPending(true);
-    fetch("http://127.0.0.1:3000/user/auth", {
+    fetch(`${API_URL}/user/auth`, {
       method: "POST",
       headers: new Headers({ "content-type": "application/json" }),
       body: JSON.stringify(userInfo),
@@ -27,6 +29,7 @@ const useAuth = () => {
           return;
         }
         sessionStorage.setItem("userToken", content.userToken);
+        navigate("/timediary");
         setPending(false);
         return;
       })
@@ -36,11 +39,20 @@ const useAuth = () => {
       });
   };
 
-  return { signIn, isPending };
+  const logOut = () => {
+    sessionStorage.removeItem("userToken");
+    navigate("/");
+  };
+
+  return { signIn, isPending, logOut };
 };
 
 const userAccess = () => {
   return !isAuth() && redirect("/");
+};
+
+const getUserToken = () => {
+  return sessionStorage.getItem("userToken");
 };
 
 const indexRedirect = () => {
@@ -52,4 +64,4 @@ const getUser = () => {
   return user;
 };
 
-export { useAuth, userAccess, indexRedirect, getUser, isAuth };
+export { useAuth, userAccess, indexRedirect, getUser, isAuth, getUserToken };
