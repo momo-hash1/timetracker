@@ -44,6 +44,9 @@ p {
   color: #adacaf;
   font-size: 18px;
   margin-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .section-header > span {
@@ -271,4 +274,14 @@ button {
 .error-msg {
   background-color: #f2513f;
   color: #ebeaeb;
+}
+.add-timediary {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.add-timediary > button{
+  margin: 0;
 }

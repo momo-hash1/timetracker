@@ -11,15 +11,6 @@ const MessageBox = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.alert.messages);
 
-  // React.useEffect(() => {
-  //   const timer = setTimeout(
-  //     () => dispatch(clearMessage(messages.length - 1)),
-  //     2000
-  //   );
-
-  //   return () => setTimeout(timer);
-  // }, [messages]);
-
   return (
     <React.Fragment>
       {messages.length !== 0 && (

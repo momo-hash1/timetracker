@@ -6,7 +6,7 @@ import React from "react";
 import { API_URL } from "../utils";
 
 const isAuth = () => {
-  return sessionStorage.getItem("userToken") !== null;
+  return localStorage.getItem("userToken") !== null;
 };
 
 const useAuth = () => {
@@ -28,7 +28,7 @@ const useAuth = () => {
           setPending(false);
           return;
         }
-        sessionStorage.setItem("userToken", content.userToken);
+        localStorage.setItem("userToken", content.userToken);
         navigate("/timediary");
         setPending(false);
         return;
@@ -40,7 +40,7 @@ const useAuth = () => {
   };
 
   const logOut = () => {
-    sessionStorage.removeItem("userToken");
+    localStorage.removeItem("userToken");
     navigate("/");
   };
 
@@ -52,7 +52,7 @@ const userAccess = () => {
 };
 
 const getUserToken = () => {
-  return sessionStorage.getItem("userToken");
+  return localStorage.getItem("userToken");
 };
 
 const indexRedirect = () => {

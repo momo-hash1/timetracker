@@ -5,7 +5,10 @@ const TitledContainer = (props) => {
   return (
     <div className="titled-container">
       <h1 className="section-header">
-        {props.title}: <span>{props.highlightTitle}</span>
+        <p>
+          {props.title}: <span>{props.highlightTitle}</span>
+        </p>
+        {props.headerActions}
       </h1>
       <div className="content-section">{props.children}</div>
     </div>
