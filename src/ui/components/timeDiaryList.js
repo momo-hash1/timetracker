@@ -6,9 +6,13 @@ import EntryLoader from "./containers/entryLoader";
 import ListItem from "./widgets/list/ListItem";
 import Button from "./widgets/Button";
 import AddTimediary from "./addTimediary";
+import useEntities from "../../logic/useEntities";
 
-const TimeDiaryList = () => {
+const TimeDiaryList = (props) => {
   const navigate = useNavigate();
+
+  const { removeEntry } = useEntities("timediaries");
+
   const [showAdd, setShowAdd] = React.useState(false);
 
   const [needUpdate, setNeedUpdate] = React.useState(false);
@@ -38,6 +42,27 @@ const TimeDiaryList = () => {
                   onClick={() => {
                     navigate(`/timediary/${x.id}`);
                   }}
+                  listActions={
+                    <React.Fragment>
+                      <Button>change</Button>
+                      <Button
+                        onClick={() => {
+                          props.showModal(true);
+
+                          props.callModal({
+                            action: () => {
+                              removeEntry(x.id);
+                              setNeedUpdate(true);
+                            },
+                            title: "Are you sure you want delete this?",
+                            text: "It is cause delete entire timediary and this action dont reversible",
+                          });
+                        }}
+                      >
+                        x
+                      </Button>
+                    </React.Fragment>
+                  }
                 >
                   {x.title}
                 </ListItem>

@@ -164,6 +164,18 @@ input:focus {
   padding: 10px;
 }
 
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.warning-text{
+  color:#d41200;
+}
+
 .list {
   background-color: #434360;
   padding: 5px;
@@ -173,8 +185,18 @@ input:focus {
   padding: 8px;
   margin-top: 4px;
   margin-bottom: 4px;
-  cursor: pointer;
   color: #ffb10a;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.list-item > div > * {
+  margin: 0 0 0 10px;
+}
+
+.list-item > p{
+  cursor: pointer;
 }
 
 .list > ul {
@@ -282,6 +304,6 @@ button {
   gap: 5px;
 }
 
-.add-timediary > button{
+.add-timediary > button {
   margin: 0;
 }

@@ -6,7 +6,7 @@ import { getUserToken } from "./auth";
 import { getInfoMessage } from "./messages";
 import { addMessage } from "./redux/messageSlice";
 
-const useEntities = (table) => {
+const useEntities = (table, needUpdate = () => {}) => {
   const [entry, setEntry] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -33,7 +33,7 @@ const useEntities = (table) => {
       });
   };
 
-  const addEntry = (entry, needUpdate = () => {}) => {
+  const addEntry = (entry) => {
     fetch(`${API_URL}/${table}/add?${new URLSearchParams(accessParams)}`, {
       method: "POST",
       headers: new Headers({ "content-type": "application/json" }),
@@ -42,11 +42,25 @@ const useEntities = (table) => {
       .then((r) => r.json())
       .then((content) => {
         dispatch(addMessage(getInfoMessage(content.title)));
-        needUpdate()
+        needUpdate();
       });
   };
 
-  return { entry, retriveEntry, loading, addEntry };
+  const removeEntry = (entryId) => {
+    fetch(
+      `${API_URL}/${table}/${entryId}?${new URLSearchParams(accessParams)}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((r) => r.json())
+      .then((content) => {
+        dispatch(addMessage(getInfoMessage(content.title)));
+        needUpdate();
+      });
+  };
+
+  return { entry, loading, retriveEntry, addEntry, removeEntry };
 };
 
 export default useEntities;

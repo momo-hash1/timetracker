@@ -1,18 +1,17 @@
-import List from "./List";
-import Input from "./Input";
+import Button from "./Button";
+import React from "react";
 
 const Modal = (props) => {
+  if (!props.showModal) return;
   return (
-    <div className="modal" style="display: none">
+    <div className="modal">
       <div className="modal-content">
         <div>
           <div className="modal-header">
-            <h1>{props.headerTitle}</h1>
+            {props.header}
+            <Button onClick={() => props.hideModal()}>x</Button>
           </div>
-          <div className="tasks-list">
-            {props.body}
-            <List array={[2012, 12012, 1203, 434]} header={<Input />} />
-          </div>
+          <div className="">{props.children}</div>
         </div>
       </div>
       <div className="modal-background"></div>

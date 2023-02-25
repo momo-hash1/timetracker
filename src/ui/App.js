@@ -4,11 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./pages";
 import React from "react";
 import { indexRedirect, userAccess } from "../logic/auth";
-import {Provider} from "react-redux"
+import { Provider, useSelector } from "react-redux";
 import store from "../logic/redux/store";
 
 const App = () => {
-  const [messages, setMessages] = React.useState([]);
 
   const router = createBrowserRouter([
     {
@@ -27,7 +26,11 @@ const App = () => {
       loader: userAccess,
     },
   ]);
-  return <Provider store={store}><RouterProvider router={router} /></Provider> ;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 };
 
 export default App;

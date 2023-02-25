@@ -8,6 +8,7 @@ const FunctionWidgets = (props) => {
   return (
     <EntryLoader
       table="years"
+      setNeedUpdate={() => {}}
       child={(arr) => (
         <TitledContainer title={"Jump to year"}>
           <List
