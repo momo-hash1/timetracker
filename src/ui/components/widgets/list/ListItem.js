@@ -1,13 +1,13 @@
 import PropsTypes from "prop-types";
 
 const ListItem = (props) => {
+  const onClick = props.onClick === undefined ? () => {} : props.onClick;
+  const appear =
+    props.optionalAppear === undefined ? () => [] : props.optionalAppear;
 
   return (
-    <li
-      onClick={() => props.onClick()}
-      className={`${props.optionalAppear.join(" ")} list-item`}
-    >
-      {props.title}
+    <li onClick={() => onClick()} className={`${appear.join(" ")} list-item`}>
+      {props.children}
     </li>
   );
 };

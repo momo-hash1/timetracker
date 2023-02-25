@@ -7,21 +7,12 @@ export const messageSlice = createSlice({
   },
   reducers: {
     addMessage: (state, action) => {
-      if (state.messages.length > 4) {
-        state.messages.splice(0, 1);
-      }
-      state.messages.push(action.payload);
+      state.messages.push({ ...action.payload, id: state.messages.length + 1 });
     },
     clearMessage: (state, action) => {
-      if(isNaN(action.payload)){
-        state.messages = state.messages.filter(
-          (searchMsg) => searchMsg.title !== action.payload
-        );
-      }else{
-        state.messages = state.messages.filter(
-          (_, index) => index !== action.payload
-        );
-      }
+      state.messages = state.messages.filter(
+        (msg) => msg.id !== action.payload
+      );
     },
   },
 });

@@ -1,21 +1,24 @@
 import TitledContainer from "../containers/TitledContainer";
-import List from "./List";
+import List from "./list/List";
 import React from "react";
 import { ERROR_MSG } from "../../../utils";
 import { useSelector, useDispatch } from "react-redux";
 import { clearMessage } from "../../../logic/redux/messageSlice";
+import ListItem from "./list/ListItem";
+import DisappearOnSecond from "../containers/disappearOnSecond";
 
 const MessageBox = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.alert.messages);
-  React.useEffect(() => {
-    const timeOut = setTimeout(
-      () => dispatch(clearMessage(messages.length - 1)),
-      2000
-    );
 
-    return () => setTimeout(timeOut);
-  }, [messages]);
+  // React.useEffect(() => {
+  //   const timer = setTimeout(
+  //     () => dispatch(clearMessage(messages.length - 1)),
+  //     2000
+  //   );
+
+  //   return () => setTimeout(timer);
+  // }, [messages]);
 
   return (
     <React.Fragment>
@@ -23,12 +26,22 @@ const MessageBox = () => {
         <TitledContainer title={"messages"}>
           <List
             array={messages}
-            pickTitle={(x) => x.title}
-            onClick={(message) => {
-              dispatch(clearMessage(message));
-            }}
-            pickProperty={(x) => x}
-            optionalAppear={(x) => x.type === ERROR_MSG && "error-msg"}
+            listItem={(x) => (
+              <DisappearOnSecond
+                sec={2}
+                onDisappear={() => dispatch(clearMessage(x.id))}
+                changeVal={messages}
+              >
+                <ListItem
+                  optionalAppear={[x.type === ERROR_MSG && "error-msg"]}
+                  onClick={() => {
+                    dispatch(clearMessage(x.id));
+                  }}
+                >
+                  {x.title}
+                </ListItem>
+              </DisappearOnSecond>
+            )}
           />
         </TitledContainer>
       )}

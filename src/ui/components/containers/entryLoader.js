@@ -3,7 +3,7 @@ import useEntities from "../../../logic/getEntities";
 import Button from "../widgets/Button";
 
 const EntryLoader = (props) => {
-  const { entry, retriveEntry, loading } = useEntities("timediaries");
+  const { entry, retriveEntry, loading } = useEntities(props.table);
   React.useEffect(() => {
     retriveEntry(0);
   }, []);

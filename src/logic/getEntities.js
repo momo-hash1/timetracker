@@ -1,15 +1,19 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { API_URL } from "../utils";
 import { getUserToken } from "./auth";
 
 const useEntities = (table) => {
   const [entry, setEntry] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const retriveEntry = (offset, timeDiary = null) => {
+
+  const {timediaryId} = useParams("timediaryId")
+
+  const retriveEntry = (offset) => {
     fetch(
       `${API_URL}/${table}/available?${new URLSearchParams({
         userToken: getUserToken(),
-        timeDiary: timeDiary,
+        timediaryId: timediaryId,
         offset: offset,
       })}`
     )
