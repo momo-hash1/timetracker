@@ -1,14 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../utils";
-import { getUserToken } from "./auth";
-import { getInfoMessage } from "./messages";
+import { getUserToken, useAuth } from "./auth";
+import { getErrorMessage, getInfoMessage } from "./messages";
 import { addMessage } from "./redux/messageSlice";
 
 const useEntities = (table, needUpdate = () => {}) => {
   const [entry, setEntry] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+
+  const {logOut} = useAuth()
+
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
 
@@ -17,6 +21,15 @@ const useEntities = (table, needUpdate = () => {}) => {
   const accessParams = {
     userToken: getUserToken(),
     timediaryId: timediaryId,
+  };
+
+  const onInvalidToken = (message) => {
+    if (message.title !== "Please relogin")
+      return;
+
+    dispatch(addMessage(getErrorMessage(message.title)));
+    logOut()
+    navigate("/")
   };
 
   const retriveEntry = (offset) => {
@@ -28,6 +41,7 @@ const useEntities = (table, needUpdate = () => {}) => {
     )
       .then((r) => r.json())
       .then((content) => {
+        onInvalidToken(content);
         setEntry([...content]);
         setLoading(false);
       });
@@ -41,6 +55,7 @@ const useEntities = (table, needUpdate = () => {}) => {
     })
       .then((r) => r.json())
       .then((content) => {
+        onInvalidToken(content);
         dispatch(addMessage(getInfoMessage(content.title)));
         needUpdate();
       });
@@ -55,6 +70,7 @@ const useEntities = (table, needUpdate = () => {}) => {
     )
       .then((r) => r.json())
       .then((content) => {
+        onInvalidToken(content);
         dispatch(addMessage(getInfoMessage(content.title)));
         needUpdate();
       });
