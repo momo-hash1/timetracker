@@ -6,27 +6,21 @@ import EntryLoader from "./containers/entryLoader";
 import ListItem from "./widgets/list/ListItem";
 import Button from "./widgets/Button";
 import AddTimediary from "./addTimediary";
-import useEntities from "../../logic/useEntities";
 
 const TimeDiaryList = (props) => {
   const navigate = useNavigate();
-
-  const { removeEntry } = useEntities("timediaries");
-
   const [showAdd, setShowAdd] = React.useState(false);
 
   const [needUpdate, setNeedUpdate] = React.useState(false);
 
   return (
-    <React.Fragment>
-      {showAdd && (
-        <AddTimediary setNeedUpdate={setNeedUpdate} setShowAdd={setShowAdd} />
-      )}
-      <EntryLoader
-        table="timediaries"
-        needUpdate={needUpdate}
-        setNeedUpdate={setNeedUpdate}
-        child={(arr) => (
+    <EntryLoader
+      table="timediaries"
+      child={(arr, add, remove) => (
+        <React.Fragment>
+          {showAdd && (
+            <AddTimediary setShowAdd={setShowAdd} update={(x) => add(x)} />
+          )}
           <TitledContainer
             title={"Timediaries"}
             headerActions={
@@ -51,7 +45,7 @@ const TimeDiaryList = (props) => {
 
                           props.callModal({
                             action: () => {
-                              removeEntry(x.id);
+                              remove(x.id);
                               setNeedUpdate(true);
                             },
                             title: "Are you sure you want delete this?",
@@ -69,9 +63,9 @@ const TimeDiaryList = (props) => {
               )}
             ></List>
           </TitledContainer>
-        )}
-      />
-    </React.Fragment>
+        </React.Fragment>
+      )}
+    />
   );
 };
 export default TimeDiaryList;

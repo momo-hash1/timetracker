@@ -6,13 +6,13 @@ import { getUserToken, useAuth } from "./auth";
 import { getErrorMessage, getInfoMessage } from "./messages";
 import { addMessage } from "./redux/messageSlice";
 
-const useEntities = (table, needUpdate = () => {}) => {
+const useEntities = (table) => {
   const [entry, setEntry] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
-  const {logOut} = useAuth()
+  const { logOut } = useAuth();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -24,12 +24,11 @@ const useEntities = (table, needUpdate = () => {}) => {
   };
 
   const onInvalidToken = (message) => {
-    if (message.title !== "Please relogin")
-      return;
+    if (message.title !== "Please relogin") return;
 
     dispatch(addMessage(getErrorMessage(message.title)));
-    logOut()
-    navigate("/")
+    logOut();
+    navigate("/");
   };
 
   const retriveEntry = (offset) => {
@@ -42,22 +41,22 @@ const useEntities = (table, needUpdate = () => {}) => {
       .then((r) => r.json())
       .then((content) => {
         onInvalidToken(content);
-        setEntry([...content]);
+        setEntry(content);
         setLoading(false);
       });
   };
 
-  const addEntry = (entry) => {
+  const addEntry = (_entry) => {
     fetch(`${API_URL}/${table}/add?${new URLSearchParams(accessParams)}`, {
       method: "POST",
       headers: new Headers({ "content-type": "application/json" }),
-      body: JSON.stringify(entry),
+      body: JSON.stringify(_entry),
     })
       .then((r) => r.json())
       .then((content) => {
         onInvalidToken(content);
-        dispatch(addMessage(getInfoMessage(content.title)));
-        needUpdate();
+        setEntry([...entry, content.entry]);
+        dispatch(addMessage(getInfoMessage(content.title)));  
       });
   };
 
@@ -72,7 +71,7 @@ const useEntities = (table, needUpdate = () => {}) => {
       .then((content) => {
         onInvalidToken(content);
         dispatch(addMessage(getInfoMessage(content.title)));
-        needUpdate();
+        setEntry(entry.filter((x) => x.id !== entryId));
       });
   };
 
