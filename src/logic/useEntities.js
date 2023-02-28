@@ -9,6 +9,8 @@ import { addMessage } from "./redux/messageSlice";
 const useEntities = (table) => {
   const [entry, setEntry] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [hasNext, setNext] = React.useState(true);
+  const [retrivedCount, setRetrivedCount] = React.useState(0);
 
   const { logOut } = useAuth();
 
@@ -32,6 +34,7 @@ const useEntities = (table) => {
   };
 
   const retriveEntry = (offset) => {
+    if (!hasNext) return;
     fetch(
       `${API_URL}/${table}/available?${new URLSearchParams({
         ...accessParams,
@@ -41,7 +44,11 @@ const useEntities = (table) => {
       .then((r) => r.json())
       .then((content) => {
         onInvalidToken(content);
-        setEntry(content);
+        setEntry([...entry, ...content.entries]);
+
+        setNext(content.hasNext);
+        setRetrivedCount(retrivedCount + content.entries.length);
+
         setLoading(false);
       });
   };
@@ -72,6 +79,11 @@ const useEntities = (table) => {
         onInvalidToken(content);
         dispatch(addMessage(getInfoMessage(content.title)));
         setEntry(entry.filter((x) => x.id !== entryId));
+
+        console.log(retrivedCount);
+        if (entry.length === retrivedCount - 10) {
+          setNext(true);
+        }
       });
   };
 
@@ -103,7 +115,7 @@ const useEntities = (table) => {
       });
   };
 
-  return { entry, loading, retriveEntry, addEntry, removeEntry, updateEntry };
+  return { entry, loading, hasNext, retriveEntry, addEntry, removeEntry, updateEntry };
 };
 
 export default useEntities;
