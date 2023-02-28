@@ -56,7 +56,7 @@ const useEntities = (table) => {
       .then((content) => {
         onInvalidToken(content);
         setEntry([...entry, content.entry]);
-        dispatch(addMessage(getInfoMessage(content.title)));  
+        dispatch(addMessage(getInfoMessage(content.title)));
       });
   };
 
@@ -75,7 +75,35 @@ const useEntities = (table) => {
       });
   };
 
-  return { entry, loading, retriveEntry, addEntry, removeEntry };
+  const updateEntry = (entryId, values) => {
+    fetch(
+      `${API_URL}/${table}/${entryId}?${new URLSearchParams(accessParams)}`,
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+      }
+    )
+      .then((r) => r.json())
+      .then((content) => {
+        onInvalidToken(content);
+        if (content.type === "error") {
+          dispatch(addMessage(getErrorMessage(content.title)));
+
+          return;
+        }
+        dispatch(addMessage(getInfoMessage(content.title)));
+        setEntry(
+          entry.map((x) => {
+            if (x.id === entryId) {
+              return values;
+            }
+            return x;
+          })
+        );
+      });
+  };
+
+  return { entry, loading, retriveEntry, addEntry, removeEntry, updateEntry };
 };
 
 export default useEntities;

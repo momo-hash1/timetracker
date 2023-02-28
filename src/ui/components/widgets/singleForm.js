@@ -18,19 +18,23 @@ const SingleForm = (props) => {
     <div className="add-timediary">
       <Input
         title={props.title}
+        inverted={props.inverted}
         register={register(props.formName, {
           required: true,
         })}
       />
-      <Button
-        onClick={async () => {
-          const valid = await trigger();
-          if (!valid) return;
-          props.onClick(getValues(props.formName));
-        }}
-      >
-        {props.buttonLabel}
-      </Button>
+        <div>
+          <Button
+          large={true}
+            onClick={async () => {
+              const valid = await trigger();
+              if (!valid) return;
+              props.onClick(getValues(props.formName));
+            }}
+          >
+            {props.buttonLabel}
+          </Button>
+        </div>
     </div>
   );
 };

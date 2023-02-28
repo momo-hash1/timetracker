@@ -6,7 +6,11 @@ const Input = (props) => {
       {props.title !== undefined && (
         <p className="input-title">{props.title}</p>
       )}
-      <input type="text" className="input" {...props.register} />
+      <input
+        type="text"
+        className={`input ${props.inverted ? "inverted" : ""}`}
+        {...props.register}
+      />
     </div>
   );
 };

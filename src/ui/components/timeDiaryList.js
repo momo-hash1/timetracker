@@ -11,12 +11,10 @@ const TimeDiaryList = (props) => {
   const navigate = useNavigate();
   const [showAdd, setShowAdd] = React.useState(false);
 
-  const [needUpdate, setNeedUpdate] = React.useState(false);
-
   return (
     <EntryLoader
       table="timediaries"
-      child={(arr, add, remove) => (
+      child={(arr, add, remove, update) => (
         <React.Fragment>
           {showAdd && (
             <AddTimediary setShowAdd={setShowAdd} update={(x) => add(x)} />
@@ -36,27 +34,16 @@ const TimeDiaryList = (props) => {
                   onClick={() => {
                     navigate(`/timediary/${x.id}`);
                   }}
-                  listActions={
-                    <React.Fragment>
-                      <Button>change</Button>
-                      <Button
-                        onClick={() => {
-                          props.showModal(true);
+                  showActions={true}
+                  delete={() => {
+                    props.showModal(true);
 
-                          props.callModal({
-                            action: () => {
-                              remove(x.id);
-                              setNeedUpdate(true);
-                            },
-                            title: "Are you sure you want delete this?",
-                            text: "It is cause delete entire timediary and this action dont reversible",
-                          });
-                        }}
-                      >
-                        x
-                      </Button>
-                    </React.Fragment>
-                  }
+                    props.callModal({
+                      action: () => remove(x.id),
+                      title: "Delete this?",
+                    });
+                  }}
+                  update={(inputValue) => update(x.id, { title: inputValue })}
                 >
                   {x.title}
                 </ListItem>

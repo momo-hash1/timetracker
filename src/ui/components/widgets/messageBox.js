@@ -25,6 +25,7 @@ const MessageBox = () => {
               >
                 <ListItem
                   optionalAppear={[x.type === ERROR_MSG && "error-msg"]}
+                  
                   onClick={() => {
                     dispatch(clearMessage(x.id));
                   }}

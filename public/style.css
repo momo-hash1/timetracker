@@ -133,6 +133,10 @@ input:focus {
 .input-wrapper {
 }
 
+.inverted {
+  background-color: #434360;
+}
+
 .modal {
   position: absolute;
   height: 100vh;

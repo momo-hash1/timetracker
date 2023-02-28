@@ -3,7 +3,7 @@ import useEntities from "../../../logic/useEntities";
 import Button from "../widgets/Button";
 
 const EntryLoader = (props) => {
-  const { entry, retriveEntry, loading, removeEntry, addEntry } = useEntities(
+  const { entry, retriveEntry, loading, removeEntry, addEntry, updateEntry } = useEntities(
     props.table
   );
   React.useEffect(() => {
@@ -15,7 +15,7 @@ const EntryLoader = (props) => {
       {loading ? (
         <Button isPending={true}></Button>
       ) : (
-        props.child(entry, addEntry, removeEntry)
+        props.child(entry, addEntry, removeEntry, updateEntry)
       )}
     </React.Fragment>
   );
