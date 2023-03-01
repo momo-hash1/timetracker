@@ -4,11 +4,10 @@ import React from "react";
 import EntryLoader from "./containers/entryLoader";
 import ListItem from "./widgets/list/ListItem";
 
-const FunctionWidgets = (props) => {
+const FunctionWidgets = () => {
   return (
     <EntryLoader
       table="years"
-      setNeedUpdate={() => {}}
       child={(arr) => (
         <TitledContainer title={"Jump to year"}>
           <List

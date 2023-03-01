@@ -44,10 +44,13 @@ const useEntities = (table) => {
       .then((r) => r.json())
       .then((content) => {
         onInvalidToken(content);
-        setEntry([...entry, ...content.entries]);
+        const entries = content.entries.filter(
+          (x) => entry.find((y) => y.id === x.id) === undefined
+        );
+        setEntry([...entry, ...entries]);
 
         setNext(content.hasNext);
-        setRetrivedCount(retrivedCount + content.entries.length);
+        setRetrivedCount(retrivedCount + entries.length);
 
         setLoading(false);
       });
@@ -115,7 +118,15 @@ const useEntities = (table) => {
       });
   };
 
-  return { entry, loading, hasNext, retriveEntry, addEntry, removeEntry, updateEntry };
+  return {
+    entry,
+    loading,
+    hasNext,
+    retriveEntry,
+    addEntry,
+    removeEntry,
+    updateEntry,
+  };
 };
 
 export default useEntities;
