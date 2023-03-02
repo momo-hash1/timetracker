@@ -9,7 +9,7 @@ const ListItem = (props) => {
   const [editing, setEditing] = React.useState(false);
 
   return (
-    <li className={`${appear.join(" ")} list-item`}>
+    <li className={`${appear.join(" ")} list-item`} key={props.id}>
       <React.Fragment>
         {editing ? (
           <ListItemChange

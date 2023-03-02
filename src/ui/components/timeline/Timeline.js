@@ -20,7 +20,7 @@ const Timeline = (props) => {
         month={props.date.month}
       />
       <TitledContainer title={"Timeline"} highlightTitle={``}>
-        <TimelineItemToday />
+        <TimelineItemToday date={props.date}/>
         <Linebreak />
         <TimelineList days={entry} />
       </TitledContainer>

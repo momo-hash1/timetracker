@@ -2,7 +2,6 @@ import React from "react";
 import TimelineItem from "./TimelineItem";
 
 const TimelineList = (props) => {
-  console.log(props.days);
   return (
     <div>
       <div className="day-note day-note-header">

@@ -136,9 +136,9 @@ const useEntities = (table) => {
         const mappedDays = Array(days)
           .fill(0)
           .map((_, index) => {
-            const foundedDay = content.find((x) => x.day === index);
-            if (foundedDay !== undefined) return foundedDay;
-            return { day: index };
+            const foundedDay = content.find((x) => x.day === index + 1);
+            if (foundedDay !== undefined) return { ...foundedDay, id: index };
+            return { day: index, minutes: 0, id: index };
           });
 
         setEntry(mappedDays);

@@ -32,6 +32,7 @@ const TimeDiaryList = (props) => {
               array={arr}
               listItem={(x) => (
                 <ListItem
+                  
                   onClick={() => {
                     navigate(`/timediary/${x.id}`);
                   }}

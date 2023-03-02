@@ -9,7 +9,7 @@ const ListActions = (props) => {
       <Button
         onClick={() => {
           if (props.editing) {
-            setEditing(false);
+            props.setEditing(false);
           } else {
             props.delete();
           }
