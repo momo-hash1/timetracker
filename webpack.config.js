@@ -6,7 +6,9 @@ module.exports = [
     mode: "development",
     entry: "./src/ui/index.js",
     devtool: "source-map",
-    devServer: { historyApiFallback: true },
+    devServer: {
+      historyApiFallback: true,
+    },
     module: {
       rules: [
         {
@@ -26,6 +28,7 @@ module.exports = [
     },
     plugins: [
       new HtmlWebpackPlugin({
+        publicPath: "/",
         template: "./public/index.html",
       }),
     ],

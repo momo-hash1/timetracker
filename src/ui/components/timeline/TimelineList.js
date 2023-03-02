@@ -2,6 +2,7 @@ import React from "react";
 import TimelineItem from "./TimelineItem";
 
 const TimelineList = (props) => {
+  console.log(props.days);
   return (
     <div>
       <div className="day-note day-note-header">
@@ -20,7 +21,10 @@ const TimelineList = (props) => {
       </div>
 
       <div className="days-notes">
-        <TimelineItem TimeItem={{day:1, minutes: 40, difficulty: 2, task: 4}} />
+        
+        {props.days.map((x) => (
+          <TimelineItem TimeItem={x} />
+        ))}
       </div>
     </div>
   );

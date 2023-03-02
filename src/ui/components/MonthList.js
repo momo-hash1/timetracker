@@ -2,12 +2,17 @@ import Button from "./widgets/Button";
 import React from "react";
 import { getMonths } from "../../utils";
 
-const MonthList = () => {
+const MonthList = (props) => {
   return (
     <div className="month-selector">
       {getMonths().map((x, index) => (
         <div onClick={() => {}}>
-          <Button >{x}</Button>
+          <Button
+            onClick={() => props.onClick(index)}
+            selected={props.month === index}
+          >
+            {x}
+          </Button>
         </div>
       ))}
     </div>

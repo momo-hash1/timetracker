@@ -1,26 +1,22 @@
+import React from "react";
+import DifficultySelector from "../widgets/difficultySelector";
 import TimeAdder from "../widgets/timeAdder";
 
 const TimelineItem = (props) => {
+  const [markedDay, setMarkedDay] = React.useState(props.TimeItem);
   return (
     <div className="day-note">
       <div className="day-note-cell">
-        <p>{props.TimeItem.day}</p>
+        <p>{markedDay.day + 1}</p>
       </div>
       <div className="day-note-cell">
-        <p>
-          <TimeAdder time={props.TimeItem.minutes} setTime={() => {}} />
-        </p>
+        <TimeAdder time={markedDay.minutes} setTime={() => {}} />
       </div>
       <div className="day-note-cell">
-        <div className="difficulty-points">
-          <div className="difficulty-marker-unmarked"></div>
-          <div className="difficulty-marker-unmarked"></div>
-          <div className="difficulty-marker-unmarked"></div>
-          <div className="difficulty-marker-unmarked"></div>
-        </div>
+        <DifficultySelector />
       </div>
       <div className="day-note-cell">
-        <p>{props.TimeItem.task}</p>
+        <p>{markedDay.task}</p>
       </div>
     </div>
   );

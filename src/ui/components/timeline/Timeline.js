@@ -12,10 +12,13 @@ const Timeline = (props) => {
 
   React.useEffect(() => {
     retriveDays(props.date.year, props.date.month);
-  }, []);
+  }, [props.date.year, props.date.month]);
   return (
     <React.Fragment>
-      <MonthList />
+      <MonthList
+        onClick={(month) => props.setDate({ ...props.date, month: month })}
+        month={props.date.month}
+      />
       <TitledContainer title={"Timeline"} highlightTitle={``}>
         <TimelineItemToday />
         <Linebreak />

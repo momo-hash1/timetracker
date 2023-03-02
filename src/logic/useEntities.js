@@ -131,13 +131,15 @@ const useEntities = (table) => {
           dispatch(addMessage(getErrorMessage(content.title)));
           return;
         }
-        const days = new Date(year, month, 0).getDate();
+        const days = new Date(year, month + 1, 0).getDate();
 
-        const mappedDays = Array(days).map((_, index) => {
-          const foundedDay = content.find((x) => x.day === index);
-          if (foundedDay !== undefined) return foundedDay;
-          return {};
-        });
+        const mappedDays = Array(days)
+          .fill(0)
+          .map((_, index) => {
+            const foundedDay = content.find((x) => x.day === index);
+            if (foundedDay !== undefined) return foundedDay;
+            return { day: index };
+          });
 
         setEntry(mappedDays);
 
