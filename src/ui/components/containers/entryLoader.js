@@ -4,8 +4,15 @@ import useEntities from "../../../logic/useEntities";
 import Button from "../widgets/Button";
 
 const EntryLoader = (props) => {
-  const { entry, retriveEntry, loading, removeEntry, addEntry, updateEntry } =
-    useEntities(props.table);
+  const {
+    entry,
+    retriveEntry,
+    loading,
+    removeEntry,
+    addEntry,
+    updateEntry,
+    setEntry,
+  } = useEntities(props.table);
   const { ref, inView } = useInView();
 
   const [offset, setOffset] = React.useState(0);
@@ -16,7 +23,6 @@ const EntryLoader = (props) => {
 
   React.useEffect(() => {
     if (!props.hasPagination) return;
-    console.log('asdfasf');
     setOffset(offset + 1);
   }, [inView]);
   return (
@@ -25,7 +31,7 @@ const EntryLoader = (props) => {
         <Button isPending={true}></Button>
       ) : (
         <React.Fragment>
-          {props.child(entry, addEntry, removeEntry, updateEntry)}
+          {props.child(entry, { addEntry, removeEntry, updateEntry, setEntry })}
           {props.hasPagination && <div ref={ref}></div>}
         </React.Fragment>
       )}

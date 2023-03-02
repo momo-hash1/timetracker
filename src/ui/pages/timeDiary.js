@@ -5,14 +5,16 @@ import React from "react";
 import Navigation from "../components/widgets/navigation";
 
 const TimeDiary = () => {
-  const [year, setYear] = React.useState(new Date().getFullYear());
-  const [month, setMonth] = React.useState(new Date().getMonth());
+  const [date, setDate] = React.useState({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+  });
 
   return (
     <SectionDivider
-      main={<Timeline year={year} month={month} />}
+      main={<Timeline date={date} setDate={setDate} />}
       nav={<Navigation to={"/timediary"} title={"return to timediaries"} />}
-      aside={<FunctionWidgets />}
+      aside={<FunctionWidgets setYear={(x) => setDate({ ...date, year: x })} />}
     />
   );
 };

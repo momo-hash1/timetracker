@@ -15,7 +15,7 @@ const TimeDiaryList = (props) => {
     <EntryLoader
       table="timediaries"
       hasPagination={true}
-      child={(arr, add, remove, update) => (
+      child={(arr, {add, remove, update}) => (
         <React.Fragment>
           {showAdd && (
             <AddTimediary setShowAdd={setShowAdd} update={(x) => add(x)} />
