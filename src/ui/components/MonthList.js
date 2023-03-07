@@ -6,7 +6,7 @@ const MonthList = (props) => {
   return (
     <div className="month-selector">
       {getMonths().map((x, index) => (
-        <div onClick={() => {}}>
+        <div key={index}>
           <Button
             onClick={() => props.onClick(index)}
             selected={props.month === index}

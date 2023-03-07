@@ -20,9 +20,9 @@ const Timeline = (props) => {
         month={props.date.month}
       />
       <TitledContainer title={"Timeline"} highlightTitle={``}>
-        <TimelineItemToday date={props.date}/>
+        <TimelineItemToday date={props.date} showModal={props.showModal} setId={props.setId}/>
         <Linebreak />
-        <TimelineList days={entry} />
+        <TimelineList days={entry} showModal={props.showModal} setId={props.setId}/>
       </TitledContainer>
     </React.Fragment>
   );

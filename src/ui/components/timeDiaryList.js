@@ -36,6 +36,7 @@ const TimeDiaryList = (props) => {
                   onClick={() => {
                     navigate(`/timediary/${x.id}`);
                   }}
+                  value={x.title}
                   showActions={true}
                   delete={() => {
                     props.showModal(true);

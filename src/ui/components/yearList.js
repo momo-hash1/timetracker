@@ -9,12 +9,21 @@ const FunctionWidgets = (props) => {
     new Date().getFullYear()
   );
   return (
-    <EntryLoader
-      table="years"
-      child={(arr, { setEntry }) => {
-        if (arr.length === 0) setEntry([{ year: selectedYear }]);
-        return (
-          <TitledContainer title={"Jump to year"}>
+    <TitledContainer title={"Jump to year"}>
+      <EntryLoader
+        placeHolder={() => (
+          <ListItem
+            optionalAppear={["highlighted"]}
+            onClick={() => {
+              props.setYear(selectedYear);
+            }}
+          >
+            {selectedYear}
+          </ListItem>
+        )}
+        table="years"
+        child={(arr, { setEntry }) => {
+          return (
             <List
               array={arr}
               listItem={(x) => (
@@ -31,10 +40,10 @@ const FunctionWidgets = (props) => {
                 </ListItem>
               )}
             />
-          </TitledContainer>
-        );
-      }}
-    />
+          );
+        }}
+      />
+    </TitledContainer>
   );
 };
 

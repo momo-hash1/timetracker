@@ -11,7 +11,12 @@ const TimelineItemToday = (props) => {
       {isTodaySelected && (
         <React.Fragment>
           <h1 className="section-header">Today: </h1>
-          <TimelineItem TimeItem={{ day: new Date().getDate() - 1, minutes: 0 }} showEditor={true}/>
+          <TimelineItem
+            TimeItem={{ day: new Date().getDate() - 1, minutes: 0 }}
+            showEditor={true}
+            showModal={props.showModal}
+            setId={props.setId}
+          />
         </React.Fragment>
       )}
     </React.Fragment>

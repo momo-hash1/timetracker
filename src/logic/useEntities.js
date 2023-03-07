@@ -12,6 +12,8 @@ const useEntities = (table) => {
   const [hasNext, setNext] = React.useState(true);
   const [retrivedCount, setRetrivedCount] = React.useState(0);
 
+  const [prevEntry, setPrevEntry] = React.useState([]);
+
   const { logOut } = useAuth();
 
   const navigate = useNavigate();
@@ -35,6 +37,7 @@ const useEntities = (table) => {
 
   const retriveEntry = (offset) => {
     if (!hasNext) return;
+    console.log(offset);
     fetch(
       `${API_URL}/${table}/available?${new URLSearchParams({
         ...accessParams,
@@ -44,13 +47,15 @@ const useEntities = (table) => {
       .then((r) => r.json())
       .then((content) => {
         onInvalidToken(content);
-        const entries = content.entries.filter(
-          (x) => entry.find((y) => y.id === x.id) === undefined
-        );
-        setEntry([...entry, ...entries]);
+        setEntry((prevEntry) => {
+          const entries = content.entries.filter(
+            (x) => prevEntry.find((y) => y.id === x.id) === undefined
+          );
+          setRetrivedCount(retrivedCount + entries.length);
+          return [...prevEntry, ...entries];
+        });
 
         setNext(content.hasNext);
-        setRetrivedCount(retrivedCount + entries.length);
 
         setLoading(false);
       });
@@ -65,9 +70,40 @@ const useEntities = (table) => {
       .then((r) => r.json())
       .then((content) => {
         onInvalidToken(content);
-        setEntry([...entry, content.entry]);
+        if (prevEntry.length !== 0) {
+          setEntry(prevEntry);
+        }
+        setEntry((prevEntry) => [...prevEntry, content.entry]);
         dispatch(addMessage(getInfoMessage(content.title)));
       });
+  };
+
+  const searchTask = (title, offset) => {
+    if (title === undefined) return;
+    if (title.length === 0) {
+      setEntry(prevEntry);
+      setPrevEntry([]);
+      return;
+    }
+    fetch(
+      `${API_URL}/${table}/search/${title}?${new URLSearchParams({
+        ...accessParams,
+      })}`
+    )
+      .then((r) => r.json())
+      .then((content) => {
+        onInvalidToken(content);
+        if (prevEntry.length === 0) {
+          setPrevEntry(entry);
+        }
+        setEntry([...content]);
+
+        setLoading(false);
+      });
+  };
+
+  const getEntry = () => {
+    return entry;
   };
 
   const removeEntry = (entryId) => {
@@ -95,22 +131,20 @@ const useEntities = (table) => {
       `${API_URL}/${table}/${entryId}?${new URLSearchParams(accessParams)}`,
       {
         method: "POST",
+        headers: new Headers({ "content-type": "application/json" }),
+
         body: JSON.stringify(values),
       }
     )
       .then((r) => r.json())
       .then((content) => {
         onInvalidToken(content);
-        if (content.type === "error") {
-          dispatch(addMessage(getErrorMessage(content.title)));
 
-          return;
-        }
-        dispatch(addMessage(getInfoMessage(content.title)));
-        setEntry(
-          entry.map((x) => {
+        dispatch(addMessage(getErrorMessage(content.title)));
+        setEntry((prevEntry) =>
+          prevEntry.map((x) => {
             if (x.id === entryId) {
-              return values;
+              return { ...values, id: x.id };
             }
             return x;
           })
@@ -137,8 +171,11 @@ const useEntities = (table) => {
           .fill(0)
           .map((_, index) => {
             const foundedDay = content.find((x) => x.day === index + 1);
-            if (foundedDay !== undefined) return { ...foundedDay, id: index };
-            return { day: index, minutes: 0, id: index };
+            if (foundedDay !== undefined) {
+              return { ...foundedDay, id: index };
+            } else {
+              return { day: index + 1, minutes: 0, id: index };
+            }
           });
 
         setEntry(mappedDays);
@@ -148,15 +185,17 @@ const useEntities = (table) => {
   };
 
   return {
-    entry,
     loading,
     hasNext,
+    entry,
+    getEntry,
     retriveEntry,
     addEntry,
     removeEntry,
     updateEntry,
     retriveDays,
     setEntry,
+    searchTask,
   };
 };
 

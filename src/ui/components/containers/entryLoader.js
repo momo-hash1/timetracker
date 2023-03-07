@@ -5,33 +5,49 @@ import Button from "../widgets/Button";
 
 const EntryLoader = (props) => {
   const {
-    entry,
+    getEntry,
     retriveEntry,
     loading,
     removeEntry,
     addEntry,
     updateEntry,
-    setEntry,
+    searchTask,
   } = useEntities(props.table);
   const { ref, inView } = useInView();
+  const [decideEntry, setDecideEntry] = React.useState();
 
   const [offset, setOffset] = React.useState(0);
+
+  const methods = {
+    add: addEntry,
+    remove: removeEntry,
+    update: updateEntry,
+    search: searchTask,
+  };
 
   React.useEffect(() => {
     retriveEntry(offset);
   }, [offset]);
 
   React.useEffect(() => {
+    searchTask(props.searchParam);
+  }, [props.searchParam]);
+
+
+  React.useEffect(() => {
     if (!props.hasPagination) return;
     setOffset(offset + 1);
   }, [inView]);
+
   return (
     <React.Fragment>
       {loading ? (
         <Button isPending={true}></Button>
       ) : (
         <React.Fragment>
-          {props.child(entry, { addEntry, removeEntry, updateEntry, setEntry })}
+          {getEntry().length === 0
+            ? props.placeHolder(methods)
+            : props.child(getEntry(), methods)}
           {props.hasPagination && <div ref={ref}></div>}
         </React.Fragment>
       )}

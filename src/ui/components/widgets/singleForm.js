@@ -21,20 +21,21 @@ const SingleForm = (props) => {
         inverted={props.inverted}
         register={register(props.formName, {
           required: true,
+          value:props.value
         })}
       />
-        <div>
-          <Button
+      <div>
+        <Button
           large={true}
-            onClick={async () => {
-              const valid = await trigger();
-              if (!valid) return;
-              props.onClick(getValues(props.formName));
-            }}
-          >
-            {props.buttonLabel}
-          </Button>
-        </div>
+          onClick={async () => {
+            const valid = await trigger();
+            if (!valid) return;
+            props.onClick(getValues(props.formName));
+          }}
+        >
+          {props.buttonLabel}
+        </Button>
+      </div>
     </div>
   );
 };

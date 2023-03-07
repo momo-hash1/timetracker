@@ -3,14 +3,21 @@ import PropsTypes from "prop-types";
 
 const TitledContainer = (props) => {
   return (
-    <div className="titled-container">
+    <div
+      className={`titled-container ${
+        props.backgrounded && "titled-container-backgrounded"
+      }`}
+    >
       <h1 className="section-header">
         <p>
-          {props.title}: <span>{props.highlightTitle}</span>
+          {props.title} <span>{props.highlightTitle}</span>
         </p>
         {props.headerActions}
       </h1>
-      <div className="content-section">{props.children}</div>
+      <div className="content-section">
+        {props.headerLargeActions}
+        {props.children}
+      </div>
     </div>
   );
 };

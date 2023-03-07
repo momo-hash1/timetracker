@@ -140,6 +140,7 @@ input:focus {
   height: 100vh;
   width: 100vw;
   top: 0;
+  overflow: hidden;
 }
 
 .modal-content {
@@ -320,4 +321,24 @@ button {
   display: grid;
   grid-template-columns: 30% 70%;
   gap: 10px;
+}
+
+.titled-container-backgrounded{
+  background-color: #434360;
+}
+
+.task-selector{
+  position: relative;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: #343234;
+  overflow: hidden;
+}
+
+.task-selector-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }
