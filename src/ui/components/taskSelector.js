@@ -47,7 +47,10 @@ const TaskSelector = (props) => {
                   array={arr}
                   listItem={(x) => (
                     <ListItem
-                      onClick={() => {}}
+                      onClick={() => {
+                        props.update({ 
+                          taskId: x.id });
+                      }}
                       showActions={true}
                       key={x.id}
                       value={x.title}

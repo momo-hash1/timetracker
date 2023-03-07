@@ -21,7 +21,7 @@ const TimelineList = (props) => {
 
       <div className="days-notes">
         {props.days.map((x, index) => (
-          <TimelineItem TimeItem={x} key={index} showModal={props.showModal} setId={props.setId}/>
+          <TimelineItem TimeItem={x} key={index} showModal={props.showModal} setId={props.setId} update={props.update}/>
         ))}
       </div>
     </div>

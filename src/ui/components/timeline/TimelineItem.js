@@ -18,7 +18,9 @@ const TimelineItem = (props) => {
             time={markedDay.minutes}
             setChangeTime={setChangeTime}
             setTime={(time) => {
-              setMarkedDay({ ...markedDay, minutes: markedDay.minutes + time });
+              const calcTime = markedDay.minutes + time;
+              setMarkedDay({ ...markedDay, minutes: calcTime });
+              props.update(markedDay.day, { minutes: calcTime });
             }}
           />
         ) : (
@@ -29,16 +31,21 @@ const TimelineItem = (props) => {
       </div>
       <div className="day-note-cell">
         <DifficultySelector
-          setAmount={(amount) =>
-            setMarkedDay({ ...markedDay, difficulty: amount })
-          }
+          setAmount={(amount) => {
+            setMarkedDay({ ...markedDay, difficulty: amount });
+            props.update(markedDay.day, { difficulty: amount });
+          }}
           amount={markedDay.difficulty}
         />
       </div>
-      <div className="day-note-cell" onClick={() => {
-        props.showModal(true)
-      }}>
-        {markedDay.Task === undefined || markedDay.Task === null   ? (
+      <div
+        className="day-note-cell"
+        onClick={() => {
+          props.showModal(true);
+          props.setId(markedDay.day);
+        }}
+      >
+        {markedDay.Task === undefined || markedDay.Task === null ? (
           <p style={{ color: "#cc8b00", cursor: "pointer" }}>select task</p>
         ) : (
           <p style={{ cursor: "pointer" }}>{markedDay.Task.title}</p>

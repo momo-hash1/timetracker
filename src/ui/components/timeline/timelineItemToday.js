@@ -12,10 +12,15 @@ const TimelineItemToday = (props) => {
         <React.Fragment>
           <h1 className="section-header">Today: </h1>
           <TimelineItem
-            TimeItem={{ day: new Date().getDate() - 1, minutes: 0 }}
+            TimeItem={
+              props.timeItem === undefined
+                ? { day: new Date().getDate() - 1, minutes: 0 }
+                : props.timeItem
+            }
             showEditor={true}
             showModal={props.showModal}
             setId={props.setId}
+            update={props.update}
           />
         </React.Fragment>
       )}

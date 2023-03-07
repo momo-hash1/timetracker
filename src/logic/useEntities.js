@@ -152,37 +152,6 @@ const useEntities = (table) => {
       });
   };
 
-  const retriveDays = (year, month) => {
-    fetch(
-      `${API_URL}/timeline/${year}/${month}?${new URLSearchParams(
-        accessParams
-      )}`
-    )
-      .then((r) => r.json())
-      .then((content) => {
-        onInvalidToken(content);
-        if (content.type) {
-          dispatch(addMessage(getErrorMessage(content.title)));
-          return;
-        }
-        const days = new Date(year, month + 1, 0).getDate();
-
-        const mappedDays = Array(days)
-          .fill(0)
-          .map((_, index) => {
-            const foundedDay = content.find((x) => x.day === index + 1);
-            if (foundedDay !== undefined) {
-              return { ...foundedDay, id: index };
-            } else {
-              return { day: index + 1, minutes: 0, id: index };
-            }
-          });
-
-        setEntry(mappedDays);
-
-        setLoading(false);
-      });
-  };
 
   return {
     loading,
@@ -193,7 +162,6 @@ const useEntities = (table) => {
     addEntry,
     removeEntry,
     updateEntry,
-    retriveDays,
     setEntry,
     searchTask,
   };

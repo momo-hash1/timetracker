@@ -3,7 +3,6 @@ import ListActions from "./listActions";
 import ListItemChange from "./ListItemChange";
 
 const ListItem = (props) => {
-  console.log(props.value);
   const onClick = props.onClick === undefined ? () => {} : props.onClick;
   const appear = props.optionalAppear === undefined ? [] : props.optionalAppear;
 
