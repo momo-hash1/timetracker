@@ -17,7 +17,7 @@ const _Auth = () => {
 
   const dispatch = useDispatch();
 
-  const { signIn, isPending } = useAuth();
+  const { signIn, signUp, isPending } = useAuth();
 
   const onRegister = () => alert("sign up");
 
@@ -70,7 +70,7 @@ const _Auth = () => {
                 const valid = await trigger();
                 if (!valid) return;
                 if (isSignUp) {
-                  onRegister();
+                  signUp(getValues());
                   return;
                 }
                 signIn(getValues());
