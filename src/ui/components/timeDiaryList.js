@@ -14,9 +14,11 @@ const TimeDiaryList = (props) => {
   return (
     <EntryLoader
       table="timediaries"
-      placeHolder={() => <p>Nothing</p>}
+      placeHolder={({ add }) => (
+        <AddTimediary setShowAdd={setShowAdd} update={(x) => add(x)} />
+      )}
       hasPagination={true}
-      child={(arr, {add, remove, update}) => (
+      child={(arr, { add, remove, update }) => (
         <React.Fragment>
           {showAdd && (
             <AddTimediary setShowAdd={setShowAdd} update={(x) => add(x)} />
@@ -33,7 +35,6 @@ const TimeDiaryList = (props) => {
               array={arr}
               listItem={(x) => (
                 <ListItem
-                  
                   onClick={() => {
                     navigate(`/timediary/${x.id}`);
                   }}
